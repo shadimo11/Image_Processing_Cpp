@@ -221,10 +221,20 @@ Image adjustBrightness(const Image& input, int value) {
     int channels = input.getChannels();
     Image output(width, height, channels);
     
-    // TODO: Implement this function
-    // For each pixel and each channel:
-    //   new_value = input(y, x, c) + value
-    //   output(y, x, c) = max(0, min(255, new_value))
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
+                // Add the brightness offset
+                int newVal = input(y, x, c) + value;
+
+                // Clamp the result to the valid pixel range [0, 255]
+                output(y, x, c) = max(0, min(255, newVal));
+            }
+        }
+    }
     
     return output;
 }
