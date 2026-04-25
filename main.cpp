@@ -205,11 +205,16 @@ Image flipHorizontal(const Image &input)
     int width = input.getWidth();
     int channels = input.getChannels();
     Image output(width, height, channels);
-
-    // TODO: Implement this function
-    // For each pixel and each channel:
-    //   output(y, width-1-x, c) = input(y, x, c)
-
+    
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int c = 0; c < channels; c++) {
+                // Mirror horizontally: column x maps to column (width-1-x)
+                output(y, width - 1 - x, c) = input(y, x, c);
+            }
+        }
+    }
+    
     return output;
 }
 
@@ -229,11 +234,16 @@ Image flipVertical(const Image &input)
     int width = input.getWidth();
     int channels = input.getChannels();
     Image output(width, height, channels);
-
-    // TODO: Implement this function
-    // For each pixel and each channel:
-    //   output(height-1-y, x, c) = input(y, x, c)
-
+    
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int c = 0; c < channels; c++) {
+                // Mirror vertically: row y maps to row (height-1-y)
+                output(height - 1 - y, x, c) = input(y, x, c);
+            }
+        }
+    }
+    
     return output;
 }
 
