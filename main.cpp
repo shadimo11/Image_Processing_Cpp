@@ -180,8 +180,10 @@ Image convertToGrayscale(const Image &input)
     int width = input.getWidth();
     Image output(width, height, 1); // Single channel for grayscale
   
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
 
             int R = input(y, x, 0);
             int G = input(y, x, 1);
@@ -213,9 +215,12 @@ Image flipHorizontal(const Image &input)
     int channels = input.getChannels();
     Image output(width, height, channels);
     
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            for (int c = 0; c < channels; c++) {
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
                 // Mirror horizontally: column x maps to column (width-1-x)
                 output(y, width - 1 - x, c) = input(y, x, c);
             }
@@ -242,9 +247,12 @@ Image flipVertical(const Image &input)
     int channels = input.getChannels();
     Image output(width, height, channels);
     
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            for (int c = 0; c < channels; c++) {
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
                 // Mirror vertically: row y maps to row (height-1-y)
                 output(height - 1 - y, x, c) = input(y, x, c);
             }
@@ -271,9 +279,12 @@ Image adjustBrightness(const Image &input, int value)
     int channels = input.getChannels();
     Image output(width, height, channels);
 
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            for (int c = 0; c < channels; c++) {
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
                 // Add the brightness offset
                 int newVal = input(y, x, c) + value;
 
@@ -305,9 +316,12 @@ Image adjustContrast(const Image &input, float factor)
     int channels = input.getChannels();
     Image output(width, height, channels);
 
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            for (int c = 0; c < channels; c++) {
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int c = 0; c < channels; c++)
+            {
                 // Scale around midpoint 128 using float arithmetic first
                 float newVal = factor * (input(y, x, c) - 128.0f) + 128.0f;
 
@@ -377,9 +391,12 @@ Image rotate90(const Image &input)
     int channels = input.getChannels();
     Image output(height, width, channels); // Width and height are swapped
 
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            for (int c = 0; c < channels; c++) {
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++) 
+        {
+            for (int c = 0; c < channels; c++)
+            {
                 output(x, height - 1 - y, c) = input(y, x, c);
             }
         }
